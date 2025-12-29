@@ -1,0 +1,59 @@
+============================================================
+                   DAX MEASURES DEFINITIONS
+============================================================
+Project: Business Intelligence - Retail Sales Analysis
+Team: Mariem & Rihem  # Fixed team name
+Date: December 2025
+
+REQUIRED MEASURES (At least 3 DAX measures):
+
+1. TOTAL SALES
+   Formula:  Total_Sales = SUM(Fact_Sales[Sales_Amount])
+   Type:     Aggregation (SUM)
+   Use:      Primary KPI for sales performance
+
+2. AVERAGE ORDER VALUE
+   Formula:  Avg_Order_Value = AVERAGE(Fact_Sales[Sales_Amount])
+   Type:     Aggregation (AVG)
+   Use:      Customer spending analysis
+
+3. YEAR-OVER-YEAR GROWTH
+   Formula:  Sales_YoY = 
+             VAR CurrentYear = [Total_Sales]
+             VAR PreviousYear = CALCULATE([Total_Sales], SAMEPERIODLASTYEAR(Dim_Date[Date]))
+             RETURN DIVIDE(CurrentYear - PreviousYear, PreviousYear, 0)
+   Type:     Time Intelligence (YOY)
+   Use:      Annual performance comparison
+
+4. MONTH-OVER-MONTH GROWTH
+   Formula:  Sales_MoM = 
+             VAR CurrentMonth = [Total_Sales]
+             VAR PreviousMonth = CALCULATE([Total_Sales], PREVIOUSMONTH(Dim_Date[Date]))
+             RETURN DIVIDE(CurrentMonth - PreviousMonth, PreviousMonth, 0)
+   Type:     Time Intelligence (MOM)
+   Use:      Monthly trend analysis
+
+5. AVERAGE SHIPPING DAYS
+   Formula:  Avg_Shipping_Days = AVERAGE(Fact_Sales[Shipping_Days])
+   Type:     Aggregation (AVG)
+   Use:      Shipping performance
+
+ADDITIONAL TIME INTELLIGENCE MEASURES:
+
+6. YEAR-TO-DATE SALES
+    Formula:  Sales_YTD = TOTALYTD([Total_Sales], Dim_Date[Date])
+
+7. MONTH-TO-DATE SALES
+    Formula:  Sales_MTD = TOTALMTD([Total_Sales], Dim_Date[Date])
+
+8. QUARTER-TO-DATE SALES
+    Formula:  Sales_QTD = TOTALQTD([Total_Sales], Dim_Date[Date])
+
+IMPLEMENTATION NOTES:
+• All measures should be created in Power BI
+• Date table (Dim_Date) must be marked as date table
+• Relationships must be properly set up
+• Use DIVIDE() to handle divide-by-zero errors
+• Test measures with sample data
+
+============================================================
