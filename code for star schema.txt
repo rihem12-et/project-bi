@@ -9,8 +9,6 @@ Table fact_sales {
   region_key integer [ref: > dim_region.region_key]
   sales_amount decimal
   quantity integer
-  discount decimal
-  profit_amount decimal
 }
 
 Table dim_date {
