@@ -1,0 +1,48 @@
+// Star Schema for Retail Sales
+// Team: Mariem & Rihem
+
+Table fact_sales {
+  sale_id integer [primary key]
+  date_key integer [ref: > dim_date.date_key]
+  product_key integer [ref: > dim_product.product_key]
+  customer_key integer [ref: > dim_customer.customer_key]
+  region_key integer [ref: > dim_region.region_key]
+  sales_amount decimal
+  quantity integer
+  discount decimal
+  profit_amount decimal
+}
+
+Table dim_date {
+  date_key integer [primary key]
+  date date
+  year integer
+  quarter integer
+  month integer
+  month_name varchar
+  day_of_week varchar
+  is_weekend boolean
+}
+
+Table dim_product {
+  product_key integer [primary key]
+  product_id varchar
+  product_name varchar
+  category varchar
+  sub_category varchar
+}
+
+Table dim_customer {
+  customer_key integer [primary key]
+  customer_id varchar
+  customer_name varchar
+  segment varchar
+}
+
+Table dim_region {
+  region_key integer [primary key]
+  city varchar
+  state varchar
+  region varchar
+  country varchar
+}
